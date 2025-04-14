@@ -1,0 +1,13 @@
+<div class="px-10">
+    <h1 class="text-lg font-bold">About</h1>
+    <p class="text-sm">lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+    <p class="text-sm">lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+    <p class="text-sm">Clients number:
+        <app-counter [duration]="duration()" [message]="message()" *ngIf="duration() > 0"/>
+    </p>    
+    <div>
+        <!-- no funciono en la carpeta src, tuve que crear la carpeta assets en la carpeta public y poner el audio ahí -->
+        <app-wave-audio audioUrl="assets/audio.mp3"/>
+    </div>
+</div>
+
