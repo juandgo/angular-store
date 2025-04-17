@@ -1,16 +1,16 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Product } from '../../../shared/models/product.model';
+import { Product } from '@shared/models/product.model';
+import { CommonModule } from '@angular/common';
+import { ReversePipe } from '@shared/pipes/reverse.pipe';
+import { TimeAgoPipe } from '@shared/pipes/time-ago.pipe';  
 @Component({
   selector: 'app-product',
-  imports: [],
+  imports: [CommonModule, ReversePipe, TimeAgoPipe],
   templateUrl: './product.component.html',
   styleUrl: './product.component.css'
 })
 export class ProductComponent {
   @Input({required: true}) product!: Product;// !: significa que no la he inicializado
-  // @Input({required: true}) img: string = '';
-  // @Input({required: true}) title: string = '';
-  // @Input({required: true}) price: number = 0;
   
   @Output() addToCart = new EventEmitter();
 

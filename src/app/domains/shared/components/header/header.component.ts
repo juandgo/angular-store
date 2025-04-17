@@ -1,17 +1,24 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, inject, Input, signal, SimpleChanges } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product.model';
+import { CartService } from '../../services/cart.service';
+import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLinkWithHref, CommonModule, RouterLinkActive],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
+
 export class HeaderComponent {
   hideSideMenu = signal(true);
-  @Input({required: true}) cart: Product[] = [];
+  private cartService = inject(CartService);
+  cart = this.cartService.cart;
+  total = this.cartService.total;
 
-  togleSideMenu(){
+  toggleSideMenu(){
     this.hideSideMenu.update(value => !value);
   }
+
 }
