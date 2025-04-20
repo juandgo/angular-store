@@ -1,4 +1,12 @@
-import { Component, inject, Input, signal, SimpleChange, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  inject,
+  Input,
+  signal,
+  SimpleChanges,
+  OnInit,
+  OnChanges,
+} from '@angular/core';
 
 import { RouterLinkWithHref } from '@angular/router';
 import { Product } from '@shared/models/product.model';
@@ -13,10 +21,9 @@ import { Category } from '@shared/models/category.model';
   standalone: true,
   imports: [ProductComponent, RouterLinkWithHref],
   templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+  styleUrl: './list.component.css',
 })
-
-export default class ListComponent {
+export default class ListComponent implements OnInit, OnChanges {
   products = signal<Product[]>([]);
   categories = signal<Category[]>([]);
   private cartService = inject(CartService);
@@ -29,7 +36,7 @@ export default class ListComponent {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.getProducts()
+    this.getProducts();
   }
 
   addToCart(product: Product) {
@@ -40,7 +47,7 @@ export default class ListComponent {
     this.productService.getProducts(this.category_id).subscribe({
       next: (products) => {
         this.products.set(products);
-      }
+      },
     });
   }
 
@@ -48,7 +55,7 @@ export default class ListComponent {
     this.categoryService.getCategories().subscribe({
       next: (categories) => {
         this.categories.set(categories);
-      }
+      },
     });
   }
 }

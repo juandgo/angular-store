@@ -1,16 +1,12 @@
-import { Directive, ElementRef, inject } from '@angular/core';
+import { Directive, ElementRef, inject, OnInit } from '@angular/core';
 
 @Directive({
-  selector: '[highlight]'
+  selector: '[appHighlight]',
 })
-export class HighlightDirective {
-
+export class HighlightDirective implements OnInit {
   elementRef = inject(ElementRef);
 
-  constructor() { }
-
-  ngOnInit(){
+  ngOnInit() {
     this.elementRef.nativeElement.style.backgroundColor = 'yellow';
   }
-
 }

@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, inject, Input, signal, OnInit } from '@angular/core';
 import { ProductService } from '@shared/services/product.service';
 import { CommonModule } from '@angular/common';
 import { Product } from '@shared/models/product.model';
@@ -7,10 +7,9 @@ import { CartService } from '@shared/services/cart.service';
   selector: 'app-product-details',
   imports: [CommonModule],
   templateUrl: './product-details.component.html',
-  styleUrl: './product-details.component.css'
+  styleUrl: './product-details.component.css',
 })
-
-export default class ProductDetailsComponent {
+export default class ProductDetailsComponent implements OnInit {
   @Input() id?: string;
   product = signal<Product | null>(null);
   cover = signal('');
@@ -22,10 +21,10 @@ export default class ProductDetailsComponent {
       this.productService.getOne(this.id).subscribe({
         next: (product) => {
           this.product.set(product);
-          if(product.images && product.images.length > 0) {
+          if (product.images && product.images.length > 0) {
             this.cover.set(product.images[0]);
           }
-        }
+        },
       });
     }
   }
@@ -35,10 +34,9 @@ export default class ProductDetailsComponent {
   }
 
   addToCart() {
-    const product = this.product();//me suscribo a la señal para obtener el valor
-    if(product) {
+    const product = this.product(); //me suscribo a la señal para obtener el valor
+    if (product) {
       this.cartService.addToCart(product);
     }
   }
-
 }

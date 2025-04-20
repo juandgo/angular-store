@@ -2,20 +2,16 @@ import { computed, Injectable, signal } from '@angular/core';
 import { Product } from '../models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-
   cart = signal<Product[]>([]);
-  total = computed(()=>{
-     const cart = this.cart();
-     return cart.reduce((total, product) => total + product.price, 0);
-  })
-
-  constructor() { }
+  total = computed(() => {
+    const cart = this.cart();
+    return cart.reduce((total, product) => total + product.price, 0);
+  });
 
   addToCart(product: Product) {
-    this.cart.update(products => [...products, product]);
+    this.cart.update((products) => [...products, product]);
   }
-  
 }

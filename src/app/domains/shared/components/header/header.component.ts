@@ -1,6 +1,5 @@
-import { Component, inject, Input, signal, SimpleChanges } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
-import { Product } from '../../models/product.model';
 import { CartService } from '../../services/cart.service';
 import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
 
@@ -8,17 +7,15 @@ import { RouterLinkWithHref, RouterLinkActive } from '@angular/router';
   selector: 'app-header',
   imports: [RouterLinkWithHref, RouterLinkActive],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrl: './header.component.css',
 })
-
 export class HeaderComponent {
   hideSideMenu = signal(true);
   private cartService = inject(CartService);
   cart = this.cartService.cart;
   total = this.cartService.total;
 
-  toggleSideMenu(){
-    this.hideSideMenu.update(value => !value);
+  toggleSideMenu() {
+    this.hideSideMenu.update((value) => !value);
   }
-
 }

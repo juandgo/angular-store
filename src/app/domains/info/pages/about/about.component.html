@@ -1,15 +1,20 @@
 <div>
   <h1 class="text-lg font-bold">About</h1>
-  <p class="text-sm">lorem ipsum dolor sit <span highlight>consectetur adipisicing</span>  elit. Quisquam, quos.</p>
-  <p class="text-sm">lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
-  <p class="text-sm">Clients number:
+  <p class="text-sm">
+    lorem ipsum dolor sit <span highlight>consectetur adipisicing</span> elit.
+    Quisquam, quos.
+  </p>
+  <p class="text-sm">
+    lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+  </p>
+  <p class="text-sm">
+    Clients number:
     @if (duration() > 0) {
-      <app-counter [duration]="duration()" [message]="message()"/>
+      <app-counter [duration]="duration()" [message]="message()" />
     }
   </p>
   <div>
     <!-- no funciono en la carpeta src, tuve que crear la carpeta assets en la carpeta public y poner el audio ahí -->
-    <app-wave-audio audioUrl="assets/audio.mp3"/>
+    <app-wave-audio audioUrl="assets/audio.mp3" />
   </div>
 </div>
-
